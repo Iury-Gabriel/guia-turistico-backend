@@ -1,0 +1,40 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String    @unique
+  password    String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  resetToken  String? // Adicione este campo
+  tokenExpiry DateTime? // Adicione este campo
+}
+
+model Destino {
+  id          Int        @id @default(autoincrement())
+  nome        String
+  descricao   String
+  imagem      String
+  localizacao String
+  latitude    Float
+  longitude   Float
+  atrativos   Atrativo[]
+}
+
+model Atrativo {
+  id        Int     @id @default(autoincrement())
+  nome      String
+  tipo      String
+  descricao String
+  dicas     String
+  destinoId Int
+  destino   Destino @relation(fields: [destinoId], references: [id])
+}
