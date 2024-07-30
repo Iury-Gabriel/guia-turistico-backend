@@ -1,9 +1,9 @@
-import express from 'express';
-import DestinoController from '../controllers/DestinoController';
-import AtrativoController from '../controllers/AtrativoController';
-import AuthController from '../controllers/AuthController';
-import PasswordResetController from '../controllers/PasswordResetController';
-import Database from '../models/Database';
+const express = require('express');
+const Database = require('../models/Database'); 
+const DestinoController = require('../controllers/DestinoController');
+const AtrativoController = require('../controllers/AtrativoController');
+const AuthController = require('../controllers/AuthController');
+const PasswordResetController = require('../controllers/PasswordResetController');
 
 const router = express.Router();
 const database = new Database();
