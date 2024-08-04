@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
@@ -6,7 +6,7 @@ async function main() {
     data: {
       nome: 'São Luís',
       descricao: 'A capital do Maranhão, famosa por seu centro histórico.',
-      imagem: 'url_da_imagem',
+      imagem: 'https://www.viagensecaminhos.com/wp-content/uploads/2016/11/vista-aerea-centro-historico-sao-luis.jpg',
       localizacao: 'São Luís, MA',
       latitude: -2.5307,
       longitude: -44.3068,
@@ -33,7 +33,7 @@ async function main() {
     data: {
       nome: 'Lençóis Maranhenses',
       descricao: 'Um dos parques nacionais mais incríveis do Brasil.',
-      imagem: 'url_da_imagem',
+      imagem: 'https://revista.bancorbras.com.br/wp-content/uploads/2023/12/Dunas-de-areias_Maranhao-scaled.jpg',
       localizacao: 'Barreirinhas, MA',
       latitude: -2.6854,
       longitude: -43.8589,
@@ -60,7 +60,7 @@ async function main() {
     data: {
       nome: 'Alcântara',
       descricao: 'Cidade histórica com ruínas coloniais.',
-      imagem: 'url_da_imagem',
+      imagem: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Alc%C3%A2ntara_-_01.jpg',
       localizacao: 'Alcântara, MA',
       latitude: -2.4082,
       longitude: -44.4064,
@@ -87,7 +87,7 @@ async function main() {
     data: {
       nome: 'Raposa',
       descricao: 'Conhecida por suas belas praias e artesanato local.',
-      imagem: 'url_da_imagem',
+      imagem: 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Raposa-maranhao.jpg',
       localizacao: 'Raposa, MA',
       latitude: -2.4259,
       longitude: -44.0971,
@@ -114,7 +114,7 @@ async function main() {
     data: {
       nome: 'Carolina',
       descricao: 'Porta de entrada para o Parque Nacional da Chapada das Mesas.',
-      imagem: 'url_da_imagem',
+      imagem: 'https://www.penaestrada.blog.br/wp-content/uploads/2020/08/chapada-das-mesas-95.jpg',
       localizacao: 'Carolina, MA',
       latitude: -7.3356,
       longitude: -47.4634,
@@ -137,7 +137,62 @@ async function main() {
     },
   });
 
-  console.log({ saoLuis, lencois, alcantara, raposa, carolina });
+  const timon = await prisma.destino.create({
+    data: {
+      nome: 'Timon',
+      descricao: 'Cidade com rica cultura e belezas naturais.',
+      imagem: 'https://www.noticiasdetimon.com.br/wp-content/uploads/2023/07/O-que-fazer-em-Timon-Maranhao.jpg',
+      localizacao: 'Timon, MA',
+      latitude: -5.0972,
+      longitude: -42.8322,
+      atrativos: {
+        create: [
+          {
+            nome: 'Rio Parnaíba',
+            tipo: 'Rio',
+            descricao: 'Ideal para passeios de barco e pesca.',
+            dicas: 'Visite no pôr do sol para uma vista incrível.',
+          },
+          {
+            nome: 'Parque Ambiental',
+            tipo: 'Parque',
+            descricao: 'Área verde para atividades ao ar livre.',
+            dicas: 'Ótimo para piqueniques e caminhadas.',
+          },
+        ],
+      },
+    },
+  });
+
+
+  const caxias = await prisma.destino.create({
+    data: {
+      nome: 'Caxias',
+      descricao: 'Cidade conhecida por suas festas tradicionais e cultura rica.',
+      imagem: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Caxias_3.JPG/1200px-Caxias_3.JPG',
+      localizacao: 'Caxias, MA',
+      latitude: -4.8582,
+      longitude: -43.3567,
+      atrativos: {
+        create: [
+          {
+            nome: 'Museu da Balaiada',
+            tipo: 'Museu',
+            descricao: 'Museu que conta a história da revolta da Balaiada.',
+            dicas: 'Ótimo para aprender sobre a história local.',
+          },
+          {
+            nome: 'Balneário Veneza',
+            tipo: 'Balneário',
+            descricao: 'Um dos pontos turísticos mais visitados da cidade.',
+            dicas: 'Leve roupa de banho e aproveite as piscinas naturais.',
+          },
+        ],
+      },
+    },
+  });
+
+  console.log({ saoLuis, lencois, alcantara, raposa, carolina, timon, caxias });
 }
 
 main()
