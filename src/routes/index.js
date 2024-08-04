@@ -16,11 +16,9 @@ const passwordResetController = new PasswordResetController();
 router.post('/register', (req, res) => authController.register(req, res));
 router.post('/login', (req, res) => authController.login(req, res));
 
-// Rotas para redefinição de senha
 router.post('/request-password-reset', (req, res) => passwordResetController.requestPasswordReset(req, res));
 router.post('/reset-password/:code', (req, res) => passwordResetController.resetPassword(req, res));
 
-// Rotas existentes
 router.get('/destinos', (req, res) => destinoController.getAll(req, res));
 router.get('/destinos/:id', (req, res) => destinoController.getById(req, res));
 router.get('/atrativos/:destinoId', (req, res) => atrativoController.getByDestinoId(req, res));

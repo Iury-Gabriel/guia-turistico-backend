@@ -33,7 +33,7 @@ class PasswordResetController {
       });
 
       // Enviar e-mail com o código de redefinição
-      const resetLink = `http://localhost:3001/reset-password/${code}`;
+      const resetLink = `https://guia-turistico-frontend.vercel.app/reset-password/${code}`;
       console.log(resetLink);
 
       const mailOptions = {
